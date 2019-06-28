@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: org.ruyue.cms.service1.cms.dao.TestGroupService
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.633 sec

@@ -1,0 +1,7 @@
+org\ruyue\basic\test\util\AbstractDbUnitTestCase.class
+org\ruyue\basic\dao\UserDao.class
+org\ruyue\basic\test\util\EntitiesHelper.class
+org\ruyue\basic\model\User.class
+org\ruyue\basic\dao\IUserDao.class
+org\ruyue\basic\dao\TestUserDao.class
+org\ruyue\basic\test\util\DbUtil.class

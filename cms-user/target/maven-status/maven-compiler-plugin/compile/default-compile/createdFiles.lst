@@ -1,0 +1,6 @@
+org\ruyue\cms\service\IUserService.class
+org\ruyue\cms\service\IRoleService.class
+org\ruyue\cms\service\UserService.class
+org\ruyue\cms\service\RoleService.class
+org\ruyue\cms\service\IGroupService.class
+org\ruyue\cms\service\GroupService.class

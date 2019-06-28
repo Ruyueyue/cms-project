@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="basic_Hibernate1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../basic_Hibernate/out/artifacts/basic_Hibernate_jar/basic_Hibernate.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

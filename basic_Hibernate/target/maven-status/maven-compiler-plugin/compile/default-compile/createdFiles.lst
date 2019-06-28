@@ -1,0 +1,4 @@
+org\ruyue\basic\model\SystemContent.class
+org\ruyue\basic\dao\BaseDao.class
+org\ruyue\basic\dao\IBaseDao.class
+org\ruyue\basic\model\Pager.class

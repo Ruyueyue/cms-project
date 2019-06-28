@@ -1,0 +1,138 @@
+package org.ruyue.cms.service;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.omg.CORBA.PUBLIC_MEMBER;
+import org.ruyue.basic.model.Pager;
+import org.ruyue.cms.dao.IGroupDao;
+import org.ruyue.cms.dao.IUserDao;
+import org.ruyue.cms.model.CmsException;
+import org.ruyue.cms.model.Group;
+import org.ruyue.cms.model.User;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import javax.inject.Inject;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static org.easymock.EasyMock.*;
+
+/**
+ * @program: cms-parent
+ * @description: 测试
+ * @author: Ruyue Bian
+ * @create: 2019-05-25 17:22
+ */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("/test-beans.xml")
+public class TestGroupService {
+    @Inject
+    private IGroupService groupService;
+    @Inject
+    private IGroupDao groupDao;
+    @Inject
+    private IUserDao userDao;
+    private Group baseGroup=new Group(1,"财务处");
+
+    @Test
+    public void testAdd(){
+        reset(groupDao);
+        expect(groupDao.add(baseGroup)).andReturn(baseGroup);
+        replay(groupDao);
+        groupService.add(baseGroup);
+        verify(groupDao);
+    }
+
+    @Test
+    public void testDelete(){
+        reset(groupDao,userDao);
+        int gid=1;
+        expect(userDao.listGroupUsers(gid)).andReturn(null);//判断是否还有用户
+        groupDao.delete(gid);
+        expectLastCall();
+        replay(groupDao,userDao);
+        groupService.delete(gid);
+        verify(groupDao,userDao);
+    }
+
+    @Test(expected = CmsException.class)
+    public void testDeleteHasUsers(){
+        reset(groupDao,userDao);
+        int gid=1;
+        List<User> us= Arrays.asList(new User());
+        expect(userDao.listGroupUsers(gid)).andReturn(us);
+        groupDao.delete(gid);
+        expectLastCall();
+        replay(groupDao,userDao);
+        groupService.delete(gid);
+        verify(groupDao,userDao);
+    }
+
+    @Test
+    public void testDeleteNoUsers(){
+        reset(groupDao,userDao);
+        int gid=1;
+        List<User> us= Arrays.asList(new User());
+        expect(userDao.listGroupUsers(gid)).andReturn(null);
+        groupDao.delete(gid);
+        expectLastCall();
+        replay(groupDao,userDao);
+        groupService.delete(gid);
+        verify(groupDao,userDao);
+    }
+
+    @Test
+    public void testLoad(){
+        reset(groupDao);
+        int id=1;
+        expect(groupDao.load(id)).andReturn(baseGroup);
+        replay(groupDao);
+        groupService.load(id);
+        verify(groupDao);
+    }
+
+    @Test
+    public void testListGroup(){
+        reset(groupDao);
+        expect(groupDao.listGroup()).andReturn(new ArrayList<Group>());
+        expectLastCall();
+        replay(groupDao);
+        groupService.listGroup();
+        verify(groupDao);
+    }
+
+    @Test
+    public void testFindGroup(){
+        reset(groupDao);
+        expect(groupDao.findGroup()).andReturn(new Pager<Group>());
+        expectLastCall();
+        replay(groupDao);
+        groupService.findGroup();
+        verify(groupDao);
+    }
+    @Test
+    public void testUpdate(){
+        reset(groupDao);
+        groupDao.update(baseGroup);
+        expectLastCall();
+        replay(groupDao);
+        groupService.update(baseGroup);
+        verify(groupDao);
+    }
+
+
+    @Test
+    public void testDeleteGroupUsers(){
+        reset(groupDao);
+        int gid=1;
+        groupDao.deleteGroupUsers(gid);
+        expectLastCall();
+        replay(groupDao);
+        groupService.deleteGroupUsers(gid);
+        verify(groupDao);
+    }
+
+}

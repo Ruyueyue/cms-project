@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Class-Path: libs/hibernate-core-4.2.0.Final.jar libs/antlr-2.7.7.jar l
+ ibs/spring-context-3.2.2.RELEASE.jar libs/spring-tx-3.2.2.RELEASE.jar
+  libs/dom4j-1.6.1.jar libs/aspectjweaver-1.8.4.jar libs/spring-core-3
+ .2.2.RELEASE.jar libs/javassist-3.15.0-GA.jar libs/spring-jdbc-3.2.2.
+ RELEASE.jar libs/slf4j-api-1.7.5.jar libs/spring-aop-3.2.2.RELEASE.ja
+ r libs/slf4j-log4j12-1.7.22.jar libs/hibernate-jpa-2.0-api-1.0.1.Fina
+ l.jar libs/hibernate-commons-annotations-4.0.1.Final.jar libs/jboss-l
+ ogging-3.1.0.GA.jar libs/commons-logging-1.1.1.jar libs/jboss-transac
+ tion-api_1.1_spec-1.0.0.Final.jar libs/javax.inject-1.jar libs/log4j-
+ 1.2.17.jar libs/spring-orm-3.2.2.RELEASE.jar libs/aopalliance-1.0.jar
+  libs/spring-beans-3.2.2.RELEASE.jar libs/commons-pool-1.5.4.jar libs
+ /commons-dbcp-1.4.jar libs/mysql-connector-java-5.1.24.jar libs/sprin
+ g-expression-3.2.2.RELEASE.jar
+

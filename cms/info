@@ -1,0 +1,78 @@
+﻿网站所使用的技术：
+    1. Maven分模块管理
+    2.SSH4
+    3.页面采用Freemarker
+    4.JS使用JQuery
+    5.树使用Ztree
+    6.上传文件 uploadify
+    7.Ajax， Dwr
+    8.inject 依赖注入可以解耦，让相互协作的软件组件保持松散耦合，实例不在由程序员实例化，而是通过spring容器帮我们new指定实例并且将实例注入到需要该对象的类
+    9.SessionFactory（会话工厂）接口缓存sql语句和某些数据（称为session级缓存）。
+      在应用程序初始化的时候创建,是一个重量级的类(吃内存),一般用单例模式保证一个应用中只需要一个SessionFactory实例。
+      通过SessionFactory接口可以获得Session(会话)实例
+    10. Session(会话)接口
+       ①Session一个实例代表与数据库的一次操作(当然一次操作可以是crud组合)。
+       ②Session实例通过SessionFactory获取，用完需要关闭。
+       ③Session是线程不同步的(不安全),因此要保证在同一线程中使用,可以用getCurrentSession()。
+       ④Session可以看做是持久化管理器,它是与持久化操作相关的接口。
+       Session一般以对象的形式来操作
+       ①保存一个对象(记录)—save方法
+       ②删除一个对象(记录)—delete方法
+       ③查询一个对象(记录)—get/load方法
+       ④修改一个对象(记录)—update方法
+
+
+
+1.Maven的分模块管理
+    basic-hibernate 建议用老版本，比较稳定
+    cms-core模块：model，dao,持久化
+    cms-user模块：user，role，group---->userService
+    cms-article：channel，article----->articleService
+    cms-system：Link，backup（备份），网站info----->系统管理
+    cms-web：web集成,webapp
+    cms-parent：整合上面所有模块
+    更好的分配方式：前线管理，封装模块，自动引入
+
+2.过程：
+a.basic-hibernate
+    1.创建project，package
+    2.Pager
+    3.SystemContent
+    4.IBseDao是个基本函数操作，增删改查
+    5.添加关联，groupID，添加hibernate依赖，从网上copy代码，保存，会自动加载jar包
+    6.BaseDao,实现类
+    7.User测试类+添加test的resource文件，添加Beans.xml
+    8.更改Beans,创建数据库
+    9.在test里创建dao包，新建IUserDao，UserDao，运行测试成功
+    10.加入spring-test-dbunit包,加入注释,可以去掉createDataSet(在TestUserDao中)运行错误,因为没有备份
+    11.调试
+    12.调试成功后,将项目打包,安装,使用maven中的Lifecycle中的clean和install,这样在其他项目中才可以dependency
+    13.由于Ibase中的方法太多,公开了很多,所以删掉,Base中的Override删掉.Test中,将要实现的方法放在test的UserDao中
+b.cms-core模块：model，dao
+    1.将打包的basic项目jar引入这个项目中
+    2.创建User类,写好用户信息
+    3.RBAC:Role base access control基于角色的访问管理->分为前线实体(用户张三),资源(资源很多,有些不能访问,类似于某个文件),操作(读,写,删除)
+      实体:group.张三是管理员,可以授权,看所有资源,李四也是. 因此将张三李四归类于一个角色,具有相同的操作
+      资源:某个附件,目录,栏目,文章,都可以是资源
+      用户信息,用户组和用户角色之前的关系:
+      角色: admin,publish(发布人员), audit(审核人员)
+    4.创建model中的一系列函数,创建dao中的一系列值,只需要写IUserDao的接口和UserDao的实现方法
+    5.将heberation中的test Unit里的文件拷贝出来,在pom中加入unit库
+    6.在User中创建构造函数,更改EntitiesHelper中的初始数据:private static User baseUser = new User(1,"admin1".....,更改Assert的neir
+    8.写测试类
+c.创建cms-user模块:
+    1.在parent中,将module加入.
+    2.写IUserService和UserService,会调用core和basic中的类,编写增删改查
+    3.在此期间需要随时更改core中的UserDao代码,以及随时进行测试----基于测试的开发
+    4.写测试类,TestUserService,注意:首先创建一个resource,将core中的beans进行更改
+      使用EasyMock创建: EasyMock.createStrictMock(IUserDao.class)
+d.创建cms-web模块:
+    1.cms-web是webapp类型,需要配置web.xml和cms-servlet.xml
+    2.配置jetty来run程序
+    3.使用jQuery和jsp写页面,尽可能多的使用插件的形式
+    4.写controller,同时配合jsp文件
+e.开始写channel:在core中,包括tree
+    1.tree比较难以实现,重点难点
+    2.在list_child中要做好排序.6,2,3,1,7传给服务器,将order更新为1,2,3,4,5
+
+

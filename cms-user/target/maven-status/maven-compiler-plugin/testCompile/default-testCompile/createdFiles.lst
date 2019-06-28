@@ -1,0 +1,8 @@
+org\ruyue\cms\service\TestRoleService.class
+org\ruyue\cms\service1\basic\test\util\DbUtil.class
+org\ruyue\cms\service1\basic\test\util\AbstractDbUnitTestCase.class
+org\ruyue\cms\service\TestGroupService.class
+org\ruyue\cms\service1\cms\dao\TestGroupService.class
+org\ruyue\cms\service\TestUserService.class
+org\ruyue\cms\service1\cms\dao\TestUserDao.class
+org\ruyue\cms\service1\basic\test\util\EntitiesHelper.class

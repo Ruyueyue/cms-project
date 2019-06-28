@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="cms-web" />
+        <module name="cms-topic0" />
+        <module name="cms-core" />
+        <module name="cms-user" />
+        <module name="basic-common" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="7">
+      <module name="basic-hibernate" target="1.5" />
+      <module name="cms-topic" target="1.5" />
+      <module name="cms-yyy" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
